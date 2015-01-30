@@ -1,7 +1,6 @@
 package team3735.commands;
 
 import team3735.Robot;
-import team3735.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -20,13 +19,13 @@ public class moveToteElevator extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.toteElevator.move(RobotMap.coDriverStick.getY());
-    	System.out.println(Robot.toteElevator.getCount());
+    	//Robot.toteElevator.move(Robot.oi.coDriverStick.getY());
+    	Robot.toteElevator.move(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.toteTopLimit.get() || RobotMap.toteBottomLimit.get();
+        return Robot.toteElevator.toteTopLimit.get() || Robot.toteElevator.toteBottomLimit.get();
     }
 
     // Called once after isFinished returns true

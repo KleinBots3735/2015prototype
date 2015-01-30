@@ -2,13 +2,9 @@
 package team3735;
 
 import team3735.subsystems.Drivetrain;
+import team3735.subsystems.RecyclingCan;
 import team3735.subsystems.ToteElevator;
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -23,22 +19,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	RobotMap robotMap;
 	public static ToteElevator toteElevator;
 	public static Drivetrain drivetrain;
-	RobotDrive drive;
-	Joystick driverStick;
-	Joystick coDriverStick;
-	public static Talon toteMotor;
-	Talon RCMotor;
-	Talon intakeMotorLeft;
-	Talon intakeMotorRight;
-	//DigitalInput toteBottomLimit;
-	//DigitalInput toteTopLimit;
-	Compressor compressor;
-	//Solenoid frontClaw;
-	//Solenoid rearClaw;
-	//Encoder elevatorEncoder;
+	public static RecyclingCan rcElevator;
 	
     Command autonomousCommand;
 
@@ -47,33 +30,11 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		//oi = new OI();
-    	//myRobot = new RobotDrive(0,1,2,3);
-    	// instantiate the command used for the autonomous period
-    	driverStick = new Joystick(0);
-    	coDriverStick = new Joystick(1);
-    	drive = new RobotDrive(0,1,2,3);
-    	
-    	toteMotor = new Talon(4);
-    	RCMotor = new Talon(5);
-    	
-    	intakeMotorLeft = new Talon(6);
-    	intakeMotorRight = new Talon(7);
-    	
-    	 //toteBottomLimit = new DigitalInput(0);
-    	 //toteTopLimit = new DigitalInput(1);
-    	
-    	//Pneumatic Air Compressor
-    	 //compressor = new Compressor(0);
-    		
-    	//Solenoids
-    	 //frontClaw = new Solenoid(0);
-    	 //rearClaw = new Solenoid(1);
-    	
-    	//Encoder
-    	//elevatorEncoder = new Encoder(1,0);
-    	 //compressor.start();
-    }
+		oi = new OI();
+		toteElevator = new ToteElevator();
+		drivetrain = new Drivetrain();
+		rcElevator = new RecyclingCan();
+	}
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
@@ -97,11 +58,6 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        while(isEnabled()) {
-        	drive.arcadeDrive(driverStick.getZ(), driverStick.getY());
-        	toteMotor.set(coDriverStick.getY());
-        	Timer.delay(0.01);
-        }
     }
 
     /**

@@ -1,5 +1,8 @@
 package team3735;
 
+import team3735.commands.moveRecyclingElevator;
+import team3735.commands.moveToteElevator;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -35,27 +38,30 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-	public Button driverButtonX = new JoystickButton(RobotMap.driverStick, 1);
-	public Button driverButtonA = new JoystickButton(RobotMap.driverStick, 2);
-	public Button driverButtonB = new JoystickButton(RobotMap.driverStick, 3);
-	public Button driverButtonY = new JoystickButton(RobotMap.driverStick, 4);
-	public Button driverButtonLB = new JoystickButton(RobotMap.driverStick, 5);
-	public Button driverButtonRB = new JoystickButton(RobotMap.driverStick, 6);
-	public Button driverButtonLT = new JoystickButton(RobotMap.driverStick, 7);
-	public Button driverButtonRT = new JoystickButton(RobotMap.driverStick, 8);
+	public Joystick driverStick = new Joystick(RobotMap.driverStick);
+	public Joystick coDriverStick = new Joystick(RobotMap.coDriverStick);
 	
-	public Button coDriverButtonX = new JoystickButton(RobotMap.coDriverStick, 1);
-	public Button coDriverButtonA = new JoystickButton(RobotMap.coDriverStick, 2);
-	public Button coDriverButtonB = new JoystickButton(RobotMap.coDriverStick, 3);
-	public Button coDriverButtonY = new JoystickButton(RobotMap.coDriverStick, 4);
-	public Button coDriverButtonLB = new JoystickButton(RobotMap.coDriverStick, 5);
-	public Button coDriverButtonRB = new JoystickButton(RobotMap.coDriverStick, 6);
-	public Button coDriverButtonLT = new JoystickButton(RobotMap.coDriverStick, 7);
-	public Button coDriverButtonRT = new JoystickButton(RobotMap.coDriverStick, 8);
+	public Button driverButtonX = new JoystickButton(driverStick, 1);
+	public Button driverButtonA = new JoystickButton(driverStick, 2);
+	public Button driverButtonB = new JoystickButton(driverStick, 3);
+	public Button driverButtonY = new JoystickButton(driverStick, 4);
+	public Button driverButtonLB = new JoystickButton(driverStick, 5);
+	public Button driverButtonRB = new JoystickButton(driverStick, 6);
+	public Button driverButtonLT = new JoystickButton(driverStick, 7);
+	public Button driverButtonRT = new JoystickButton(driverStick, 8);
+	public Button coDriverButtonX = new JoystickButton(coDriverStick, 1);
+	public Button coDriverButtonA = new JoystickButton(coDriverStick, 2);
+	public Button coDriverButtonB = new JoystickButton(coDriverStick, 3);
+	public Button coDriverButtonY = new JoystickButton(coDriverStick, 4);
+	public Button coDriverButtonLB = new JoystickButton(coDriverStick, 5);
+	public Button coDriverButtonRB = new JoystickButton(coDriverStick, 6);
+	public Button coDriverButtonLT = new JoystickButton(coDriverStick, 7);
+	public Button coDriverButtonRT = new JoystickButton(coDriverStick, 8);
 	
-	public OI()
-	{
+	public OI() {
 		//driverButtonX.whileHeld(new moveToteElevator());
+		coDriverButtonA.whenPressed(new moveRecyclingElevator());
+		coDriverButtonB.whenPressed(new moveToteElevator());
 	}
 }
 

@@ -1,12 +1,5 @@
 package team3735;
 
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Talon;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -25,33 +18,37 @@ public class RobotMap {
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
 	//Joystick Controllers
-	public static Joystick driverStick = new Joystick(0);
-	public static Joystick coDriverStick = new Joystick(1);
+	public static int driverStick = 0;
+	public static int coDriverStick = 1;
 	
 	//Motor Controllers
-	public static Talon frontLeftMotor = new Talon(0);
-	public static Talon frontRightMotor = new Talon(1);
-	public static Talon rearLeftMotor = new Talon(2);
-	public static Talon rearRightMotor = new Talon(3);
+	public static int frontLeftMotor = 0;
+	public static int frontRightMotor = 1;
+	public static int rearLeftMotor = 2;
+	public static int rearRightMotor = 3;
 	
-	public static RobotDrive drive = new RobotDrive(0,1,2,3);
+	public static int toteMotor = 6;
+	public static int RCMotor = 7;
 	
-	public static Talon toteMotor = new Talon(4);
-	public static Talon RCMotor = new Talon(5);
-	
-	public static Talon intakeMotorleft = new Talon(6);
-	public static Talon intakeMotorRight = new Talon(7);
-	
-	public static DigitalInput toteBottomLimit = new DigitalInput(0);
-	public static DigitalInput toteTopLimit = new DigitalInput(1);
+	public static int intakeMotorleft = 4;
+	public static int intakeMotorRight = 5;
 	
 	//Pneumatic Air Compressor
-	public static Compressor compressor = new Compressor(0);
+	public static int compressor = 0;
 		
 	//Solenoids
-	public static Solenoid frontClaw = new Solenoid(0);
-	public static Solenoid rearClaw = new Solenoid(1);
+	public static int intake = 0;
+	public static int rcClaw = 1;
+	public static int toteBrake = 2;
+	public static int rcBrake = 3;
 	
 	//Encoder
-	public static Encoder elevatorEncoder = new Encoder(1,0);
+	public static int toteBottomLimit = 0;
+	public static int toteTopLimit = 1;
+	public static int rcBottomLimit = 2;
+	public static int rcTopLimit = 3;
+	public static int toteElevatorEncoderA = 4;
+	public static int toteElevatorEncoderB = 5;
+	public static int rcElevatorEncoderA = 6;
+	public static int rcElevatorEncoderB = 7;
 }
