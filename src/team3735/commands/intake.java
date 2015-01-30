@@ -10,17 +10,16 @@ public class intake extends Command {
 
     public intake() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.toteElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.toteElevator.motorIntake();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.toteElevator.motorIntake();
     }
 
     // Make this return true when this Command no longer needs to run execute()

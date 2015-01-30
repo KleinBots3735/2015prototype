@@ -14,32 +14,34 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ToteElevator extends Subsystem {
     
     //Limit Switches
-	public DigitalInput toteBottomLimit;
-	public DigitalInput toteTopLimit;
-	public DigitalInput toteStatus;
+	public DigitalInput toteBottomLimit, toteTopLimit, toteStatus ;
 	
 	//Encoder
 	public static Encoder toteEncoder;
 
 	//Talons
-	public static Talon toteMotor;
-	public static Talon intakeMotorLeft;
-	public static Talon intakeMotorRight;
+	public static Talon toteMotor, intakeMotorLeft, intakeMotorRight;
 	
 	//Solenoids
-	public static Solenoid intake;
-	public static Solenoid toteBrake;	
+	public static Solenoid intake, toteBrake;	
 
 	public ToteElevator(){
+		//Limit Switches 
+		toteTopLimit = new DigitalInput(RobotMap.toteTopLimit);
+    	toteBottomLimit = new DigitalInput(RobotMap.toteBottomLimit);
+    	toteStatus = new DigitalInput(RobotMap.toteStatus);
+    	
+    	//Encoder
+    	toteEncoder = new Encoder(RobotMap.toteEncoderA,RobotMap.toteEncoderB);
+
+    	//Talons
     	toteMotor = new Talon(RobotMap.toteMotor);
     	intakeMotorLeft = new Talon(RobotMap.intakeMotorleft);
     	intakeMotorRight = new Talon(RobotMap.intakeMotorRight);
-    	toteTopLimit = new DigitalInput(RobotMap.toteTopLimit);
-    	toteBottomLimit = new DigitalInput(RobotMap.toteBottomLimit);
-    	toteStatus = new DigitalInput(RobotMap.toteStatus);
+    	
+    	//Solenoids
     	intake = new Solenoid(RobotMap.intake);
     	toteBrake = new Solenoid(RobotMap.toteBrake);
-    	toteEncoder = new Encoder(RobotMap.toteEncoderA,RobotMap.toteEncoderB);
 	}
 	
     public void initDefaultCommand() {

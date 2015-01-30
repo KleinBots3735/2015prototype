@@ -37,7 +37,7 @@ public class Robot extends IterativeRobot {
 		toteElevator = new ToteElevator();
 		drivetrain = new Drivetrain();
 		rcElevator = new RecyclingCan();
-		oi = new OI();		
+		oi = new OI();
 		
 		SmartDashboard.putData(drivetrain);
 		SmartDashboard.putData(toteElevator);

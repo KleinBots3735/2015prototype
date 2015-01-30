@@ -13,11 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class RecyclingCan extends Subsystem {
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	//Limit Switches
-	public static DigitalInput rcTopLimit;
-	public static DigitalInput rcBottomLimit;
+	public static DigitalInput rcTopLimit, rcBottomLimit;
 	
 	//Encoder
 	public static Encoder rcEncoder;
@@ -26,19 +23,22 @@ public class RecyclingCan extends Subsystem {
 	public static Talon rcMotor;
 	
 	//Solenoids
-	public static Solenoid rcClaw;
-	public static Solenoid rcBrake;
+	public static Solenoid rcClaw, rcBrake;
 	
 	public RecyclingCan() {
+		//Limit Switches
 		rcTopLimit = new DigitalInput(RobotMap.rcTopLimit);
 		rcBottomLimit = new DigitalInput(RobotMap.rcBottomLimit);
 		
+		//Encoder
+    	rcEncoder = new Encoder(RobotMap.rcEncoderA,RobotMap.rcEncoderB);
+
+		//Talons
 		rcMotor = new Talon(RobotMap.rcMotor);
 		
+		//Solenoids
     	rcClaw = new Solenoid(RobotMap.rcClaw);
-    	rcBrake = new Solenoid(RobotMap.rcBrake);
-    	
-    	rcEncoder = new Encoder(RobotMap.rcEncoderA,RobotMap.rcEncoderB);
+    	rcBrake = new Solenoid(RobotMap.rcBrake);	
 	}
 	
     public void initDefaultCommand() {
