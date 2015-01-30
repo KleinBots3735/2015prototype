@@ -1,6 +1,9 @@
 
 package team3735;
 
+import team3735.commands.driveWithJoy;
+import team3735.commands.moveRecyclingElevator;
+import team3735.commands.moveToteElevator;
 import team3735.subsystems.Drivetrain;
 import team3735.subsystems.RecyclingCan;
 import team3735.subsystems.ToteElevator;
@@ -8,6 +11,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,11 +34,19 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
 		toteElevator = new ToteElevator();
 		drivetrain = new Drivetrain();
 		rcElevator = new RecyclingCan();
-	}
+		oi = new OI();		
+		
+		SmartDashboard.putData(drivetrain);
+		SmartDashboard.putData(toteElevator);
+		SmartDashboard.putData(rcElevator);
+		
+		SmartDashboard.putData("DriveWithJoy", new driveWithJoy());
+		SmartDashboard.putData("Move Recycling Elevator", new moveRecyclingElevator());
+		SmartDashboard.putData("Move Tote Elevator", new moveToteElevator());
+    }
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
