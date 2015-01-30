@@ -59,7 +59,6 @@ public class OI {
 	public Button coDriverButtonRT = new JoystickButton(coDriverStick, 8);
 	
 	public OI() {
-		//driverButtonX.whileHeld(new moveToteElevator());
 		coDriverButtonA.whenPressed(new moveRecyclingElevator());
 		coDriverButtonB.whenPressed(new moveToteElevator());
 	}
