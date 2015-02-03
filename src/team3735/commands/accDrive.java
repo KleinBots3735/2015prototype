@@ -1,51 +1,53 @@
 package team3735.commands;
 
 import team3735.Robot;
-import team3735.subsystems.ToteElevator;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class moveToteElevator extends Command {
+public class accDrive extends Command {
 
-    public moveToteElevator() {
+    public accDrive() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.toteElevator);
+    	requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	ToteElevator.toteEncoder.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double Y = Robot.oi.coDriverStick.getY();
-    	if(!Robot.toteElevator.getBottomLimit() && (Y > 0)) {
-    		Robot.toteElevator.move(Y);
+    	double y = -Robot.oi.driverStick.getY();
+    	double z = -Robot.oi.driverStick.getZ();
+    	if(Robot.drivetrain.getRealSpeed()) {
+    		double ACF = 0.25;
+	    	
+		    	if(Math.abs(y) < 0.25) {
+		    		ACF = 0.25;
+		    	}
+		    	else if(Math.abs(y) >= 0.25 && Math.abs(y) < 0.75) {
+		    		ACF = 0.5;
+		    	}
+		    	else if(Math.abs(y) >= 0.75) {
+		    		ACF = 0.75;
+		    	}
+	    	
+	    	Robot.drivetrain.move(y*ACF, z*0.75);
     	}
-    	else if(!Robot.toteElevator.getTopLimit() && (Y < 0)) {
-    		Robot.toteElevator.move(Y);
+    	else {
+    		Robot.drivetrain.move(y, z);
     	}
-    	
-    	System.out.println("Encoder: " + ToteElevator.toteEncoder.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(ToteElevator.moveValue>0) {
-    		return Robot.toteElevator.getTopLimit();
-    	}
-    	else if(ToteElevator.moveValue<0) {
-        	return Robot.toteElevator.getBottomLimit();
-    	}
-    	else return false;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.toteElevator.move(0);
     }
 
     // Called when another command which requires one or more of the same

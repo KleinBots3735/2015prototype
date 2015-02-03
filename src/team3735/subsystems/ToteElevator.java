@@ -14,18 +14,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ToteElevator extends Subsystem {
     
     //Limit Switches
-	public DigitalInput toteBottomLimit, toteTopLimit, toteStatus ;
+	public DigitalInput toteBottomLimit, 
+						toteTopLimit, 
+						toteStatus ;
 	
 	//Encoder
 	public static Encoder toteEncoder;
 
 	//Talons
-	public static Talon toteMotor, intakeMotorLeft, intakeMotorRight;
+	public static Talon toteMotor, 
+						intakeMotorLeft, 
+						intakeMotorRight;
 	
 	//Solenoids
-	public static Solenoid intake, toteBrake;	
+	public static Solenoid intakeLeft,
+						   intakeRight,
+						   toteBrake;	
+	
+	public static double moveValue;
 
-	public ToteElevator(){
+	public ToteElevator() {
 		//Limit Switches 
 		toteTopLimit = new DigitalInput(RobotMap.toteTopLimit);
     	toteBottomLimit = new DigitalInput(RobotMap.toteBottomLimit);
@@ -40,8 +48,10 @@ public class ToteElevator extends Subsystem {
     	intakeMotorRight = new Talon(RobotMap.intakeMotorRight);
     	
     	//Solenoids
-    	intake = new Solenoid(RobotMap.intake);
+    	intakeLeft = new Solenoid(RobotMap.intakeLeft);
+    	intakeRight = new Solenoid(RobotMap.intakeRight);
     	toteBrake = new Solenoid(RobotMap.toteBrake);
+    	
 	}
 	
     public void initDefaultCommand() {
@@ -49,18 +59,21 @@ public class ToteElevator extends Subsystem {
     }
     //Limit Switches
     public boolean getTopLimit() {
-    	return toteTopLimit.get();
+    	return !toteTopLimit.get();
     }
     public boolean getBottomLimit() {
     	return toteBottomLimit.get();
     }
     public boolean getToteStatus() {
-    	return toteStatus.get();
+    	return !toteStatus.get();
     }
     
     //Encoder
     public int getEncoderCount() {
     	return toteEncoder.get();
+    }
+    public double getEncoderRate() {
+    	return toteEncoder.getDistance() + toteEncoder.getEncodingScale() + toteEncoder.getRaw();
     }
     
     //Talons
@@ -72,26 +85,38 @@ public class ToteElevator extends Subsystem {
 //    		brakeOff();
 //    	}
     	toteMotor.set(y);
+    	moveValue = -y;
     }
     public void motorIntake() {
-    	intakeMotorLeft.set(1);
-    	intakeMotorRight.set(-1);
+    	//intakeMotorLeft.set(1);
+    	//intakeMotorRight.set(-1);
+    	intakeMotorLeft.set(-0.75);
+    	intakeMotorRight.set(0.75);
     }    
     public void motorRelease() {
-    	intakeMotorLeft.set(-1);
-    	intakeMotorRight.set(1);
+    	//intakeMotorLeft.set(-1);
+    	//intakeMotorRight.set(1);
+    	intakeMotorLeft.set(0.75);
+    	intakeMotorRight.set(-0.75);
     }
     public void stopIntake() {
     	intakeMotorLeft.set(0);
     	intakeMotorRight.set(0);
     }
     
-    //Solenoids
-    public void openIntake() {
-    	intake.set(false);
+    public void moveIntake(double x) {
+    	intakeMotorLeft.set(x);
+    	intakeMotorRight.set(x);
     }
+    
+    //Solenoids
     public void closeIntake() {
-    	intake.set(true);
+    	intakeLeft.set(false);
+    	intakeRight.set(false);
+    }
+    public void openIntake() {
+    	intakeLeft.set(true);
+    	intakeRight.set(true);
     }    
     public void brakeOn() {
     	toteBrake.set(true);

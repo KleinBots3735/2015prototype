@@ -19,7 +19,7 @@ public class driveWithJoy extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.move(Robot.oi.driverStick.getY(), Robot.oi.driverStick.getZ());
+    	Robot.drivetrain.move(-Robot.oi.driverStick.getY()*0.75, -Robot.oi.driverStick.getZ()*0.75);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -1,7 +1,11 @@
 package team3735;
 
-import team3735.commands.moveRecyclingElevator;
-import team3735.commands.moveToteElevator;
+import team3735.commands.accSpeed;
+import team3735.commands.closeIntake;
+import team3735.commands.intakeNoLimit;
+import team3735.commands.openIntake;
+import team3735.commands.releaseTote;
+import team3735.commands.trueSpeed;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -49,6 +53,8 @@ public class OI {
 	public Button driverButtonRB = new JoystickButton(driverStick, 6);
 	public Button driverButtonLT = new JoystickButton(driverStick, 7);
 	public Button driverButtonRT = new JoystickButton(driverStick, 8);
+	public Button driverButtonStart = new JoystickButton(driverStick, 9);
+	public Button driverButtonBack = new JoystickButton(driverStick, 10);
 	public Button coDriverButtonX = new JoystickButton(coDriverStick, 1);
 	public Button coDriverButtonA = new JoystickButton(coDriverStick, 2);
 	public Button coDriverButtonB = new JoystickButton(coDriverStick, 3);
@@ -59,8 +65,14 @@ public class OI {
 	public Button coDriverButtonRT = new JoystickButton(coDriverStick, 8);
 	
 	public OI() {
-		coDriverButtonA.whenPressed(new moveRecyclingElevator());
-		coDriverButtonB.whenPressed(new moveToteElevator());
+		driverButtonRB.whileHeld(new intakeNoLimit());
+		driverButtonLB.whileHeld(new releaseTote());
+		driverButtonLT.whenPressed(new closeIntake());
+		driverButtonLT.whileHeld(new intakeNoLimit());
+		driverButtonLT.whenReleased(new openIntake());
+		//coDriverButtonB.whenPressed(new moveToteElevator());
+		driverButtonStart.whenPressed(new trueSpeed());
+		driverButtonBack.whenPressed(new accSpeed());
 	}
 }
 

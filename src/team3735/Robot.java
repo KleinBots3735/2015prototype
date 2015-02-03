@@ -1,7 +1,7 @@
-
 package team3735;
 
 import team3735.commands.driveWithJoy;
+import team3735.commands.intake;
 import team3735.commands.moveRecyclingElevator;
 import team3735.commands.moveToteElevator;
 import team3735.subsystems.Drivetrain;
@@ -44,8 +44,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(rcElevator);
 		
 		SmartDashboard.putData("DriveWithJoy", new driveWithJoy());
+		SmartDashboard.putData("Intake", new intake());
 		SmartDashboard.putData("Move Recycling Elevator", new moveRecyclingElevator());
 		SmartDashboard.putData("Move Tote Elevator", new moveToteElevator());
+		
     }
 	
 	public void disabledPeriodic() {
@@ -85,6 +87,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Encoder", Robot.toteElevator.getEncoderRate());
+
     }
     
     /**
