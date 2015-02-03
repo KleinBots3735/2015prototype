@@ -11,12 +11,12 @@ public class closeIntake extends Command {
     public closeIntake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.toteElevator);
+    	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.toteElevator.closeIntake();
+    	Robot.intake.closeIntake();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -43,11 +43,10 @@ public class RobotMap {
 	public static int rcMotor = 7;
 		
 	//Solenoids
-	public static int intakeLeft = 0;
-	public static int intakeRight = 1;
-	public static int toteBrake = 2;
+	public static int intakeSolenoid = 0;
+	public static int toteBrake = 1;
+	public static int rcClaw = 2;
 	public static int rcBrake = 3;
-	public static int rcClaw = 4;
 	
 	//Pneumatic Air Compressor
 	public static int compressor = 0;

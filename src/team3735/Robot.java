@@ -5,6 +5,7 @@ import team3735.commands.intake;
 import team3735.commands.moveRecyclingElevator;
 import team3735.commands.moveToteElevator;
 import team3735.subsystems.Drivetrain;
+import team3735.subsystems.Intake;
 import team3735.subsystems.RecyclingCan;
 import team3735.subsystems.ToteElevator;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -24,6 +25,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static ToteElevator toteElevator;
+	public static Intake intake;
 	public static Drivetrain drivetrain;
 	public static RecyclingCan rcElevator;
 	
