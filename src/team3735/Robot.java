@@ -28,8 +28,17 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Drivetrain drivetrain;
 	public static RecyclingCan rcElevator;
+	public static boolean trueSpeed;
 	
-    Command autonomousCommand;
+    public static boolean isTrueSpeed() {
+		return trueSpeed;
+	}
+
+	public static void setTrueSpeed(boolean trueSpeed) {
+		Robot.trueSpeed = trueSpeed;
+	}
+
+	Command autonomousCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -39,7 +48,9 @@ public class Robot extends IterativeRobot {
 		toteElevator = new ToteElevator();
 		drivetrain = new Drivetrain();
 		rcElevator = new RecyclingCan();
+		intake = new Intake();
 		oi = new OI();
+		trueSpeed = false;
 		
 		SmartDashboard.putData(drivetrain);
 		SmartDashboard.putData(toteElevator);

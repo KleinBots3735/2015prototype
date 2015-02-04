@@ -5,6 +5,7 @@ import team3735.commands.closeIntake;
 import team3735.commands.intakeNoLimit;
 import team3735.commands.openIntake;
 import team3735.commands.releaseTote;
+import team3735.commands.toggleIntake;
 import team3735.commands.trueSpeed;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -66,7 +67,8 @@ public class OI {
 	
 	public OI() {
 		driverButtonRB.whileHeld(new intakeNoLimit());
-		driverButtonLB.whileHeld(new releaseTote());
+		driverButtonRT.whileHeld(new releaseTote());
+		driverButtonLB.whenPressed(new toggleIntake());
 		driverButtonLT.whenPressed(new closeIntake());
 		driverButtonLT.whileHeld(new intakeNoLimit());
 		driverButtonLT.whenReleased(new openIntake());

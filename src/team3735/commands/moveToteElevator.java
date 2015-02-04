@@ -22,25 +22,27 @@ public class moveToteElevator extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double Y = Robot.oi.coDriverStick.getY();
-    	if(!Robot.toteElevator.getBottomLimit() && (Y > 0)) {
-    		Robot.toteElevator.move(Y);
-    	}
-    	else if(!Robot.toteElevator.getTopLimit() && (Y < 0)) {
-    		Robot.toteElevator.move(Y);
-    	}
-    	
-    	System.out.println("Encoder: " + ToteElevator.toteEncoder.get());
+    	Robot.toteElevator.move(Y);
+//    	if(!Robot.toteElevator.getBottomLimit() && (Y > 0)) {
+//    		Robot.toteElevator.move(Y);
+//    	}
+//    	else if(!Robot.toteElevator.getTopLimit() && (Y < 0)) {
+//    		Robot.toteElevator.move(Y);
+//    	}
+//    	
+    	//System.out.println("Encoder: " + ToteElevator.toteEncoder.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(ToteElevator.moveValue>0) {
-    		return Robot.toteElevator.getTopLimit();
-    	}
-    	else if(ToteElevator.moveValue<0) {
-        	return Robot.toteElevator.getBottomLimit();
-    	}
-    	else return false;
+//    	if(ToteElevator.moveValue>0) {
+//    		return Robot.toteElevator.getTopLimit();
+//    	}
+//    	else if(ToteElevator.moveValue<0) {
+//        	return Robot.toteElevator.getBottomLimit();
+//    	}
+//    	else return false;
+    	return false;
     }
 
     // Called once after isFinished returns true

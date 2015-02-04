@@ -38,7 +38,6 @@ public class ToteElevator extends Subsystem {
 
     	//Talons
     	toteMotor = new Talon(RobotMap.toteMotor);
-
     	
     	//Solenoids
     	toteBrake = new Solenoid(RobotMap.toteBrake);
