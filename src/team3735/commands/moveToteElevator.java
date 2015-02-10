@@ -22,7 +22,7 @@ public class moveToteElevator extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double Y = Robot.oi.coDriverStick.getY();
-    	Robot.toteElevator.move(Y);
+    	Robot.toteElevator.move(-Y);
 //    	if(!Robot.toteElevator.getBottomLimit() && (Y > 0)) {
 //    		Robot.toteElevator.move(Y);
 //    	}

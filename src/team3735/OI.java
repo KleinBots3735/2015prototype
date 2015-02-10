@@ -1,8 +1,12 @@
 package team3735;
 
 import team3735.commands.accSpeed;
+import team3735.commands.breakOff;
+import team3735.commands.breakOn;
+import team3735.commands.closeClaw;
 import team3735.commands.closeIntake;
 import team3735.commands.intakeNoLimit;
+import team3735.commands.openClaw;
 import team3735.commands.openIntake;
 import team3735.commands.releaseTote;
 import team3735.commands.toggleIntake;
@@ -33,7 +37,7 @@ public class OI {
     // three ways:
     
     // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
+     // until it is finished as determined by it's isFinished method.
     // button.whenPressed(new ExampleCommand());
     
     // Run the command while the button is being held down and interrupt it once
@@ -75,6 +79,10 @@ public class OI {
 		//coDriverButtonB.whenPressed(new moveToteElevator());
 		driverButtonStart.whenPressed(new trueSpeed());
 		driverButtonBack.whenPressed(new accSpeed());
+		driverButtonA.whenPressed(new breakOff());
+		driverButtonB.whenPressed(new breakOn());
+		coDriverButtonLT.whenPressed(new closeClaw());
+		coDriverButtonRT.whenPressed(new openClaw());
 	}
 }
 

@@ -66,22 +66,22 @@ public class ToteElevator extends Subsystem {
     
     //Talons
     public void move(double y) {
-//    	if(y>=0) {
-//    		brakeOn();
-//    	}
-//    	else {
-//    		brakeOff();
-//    	}
+    	if(y < 0) {
+    		brakeOff();
+    	}
+    	else {
+    		brakeOn();
+    	}
+    	System.out.println(y);
     	toteMotor.set(y);
-    	moveValue = -y;
     }
 
     //Solenoids
     public void brakeOn() {
-    	toteBrake.set(true);
+    	toteBrake.set(false);
     }
     public void brakeOff() {
-    	toteBrake.set(false);
+    	toteBrake.set(true);
     }
 }
 

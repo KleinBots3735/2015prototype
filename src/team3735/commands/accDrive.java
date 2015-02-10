@@ -23,12 +23,14 @@ public class accDrive extends Command {
     	double z = -Robot.oi.driverStick.getZ();
     	if(Robot.isTrueSpeed()) {
     		double ACF = 0.25;
-	    	
 		    	if(Math.abs(y) < 0.25) {
 		    		ACF = 0.25;
 		    	}
-		    	else if(Math.abs(y) >= 0.25 && Math.abs(y) < 0.75) {
+		    	else if(Math.abs(y) >= 0.25 && Math.abs(y) < 0.50) {
 		    		ACF = 0.5;
+		    	}
+		    	else if(Math.abs(y) >= 0.50 && Math.abs(y) < 0.75) {
+		    		ACF = 0.6;
 		    	}
 		    	else if(Math.abs(y) >= 0.75) {
 		    		ACF = 0.75;
@@ -39,7 +41,7 @@ public class accDrive extends Command {
     	}
     	else {
     		Robot.drivetrain.move(y, z);
-    		//System.out.println("trrueeee");
+    		System.out.println("trrueeee");
     	}
     }
 

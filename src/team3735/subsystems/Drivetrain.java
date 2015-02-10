@@ -42,16 +42,18 @@ public class Drivetrain extends Subsystem {
     	drive.arcadeDrive(moveValue, rotateValue);
     }
     
-    public void realSpeedTrue() {
-    	realSpeed = true;
-    }
     
-    public void realSpeedFalse() {
-    	realSpeed = false;
-    }
     
-    public boolean getRealSpeed() {
-    	return realSpeed;
-    }
+//    public void realSpeedTrue() {
+//    	realSpeed = true;
+//    }
+    
+//    public void realSpeedFalse() {
+//    	realSpeed = false;
+//    }
+    
+//    public boolean getRealSpeed() {
+//    	return realSpeed;
+//    }
 }
 

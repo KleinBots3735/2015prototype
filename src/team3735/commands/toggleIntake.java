@@ -23,12 +23,10 @@ public class toggleIntake extends Command {
     	if(isOpen) {
     		Robot.intake.closeIntake();
     		isOpen = false;
-    		System.out.println("closed");
     	}
     	else if(!isOpen) {
     		Robot.intake.openIntake();
     		isOpen = true;
-    		System.out.println("open");
     	}
     	
     }

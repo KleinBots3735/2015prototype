@@ -17,7 +17,6 @@ public class trueSpeed extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.setTrueSpeed(true);
-    	System.out.println(Robot.isTrueSpeed());
     }
 
     // Called repeatedly when this Command is scheduled to run

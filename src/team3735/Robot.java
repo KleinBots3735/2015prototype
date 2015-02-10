@@ -29,8 +29,8 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static RecyclingCan rcElevator;
 	public static boolean trueSpeed;
-	
-    public static boolean isTrueSpeed() {
+
+	public static boolean isTrueSpeed() {
 		return trueSpeed;
 	}
 
