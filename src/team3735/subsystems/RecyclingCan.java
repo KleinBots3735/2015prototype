@@ -23,7 +23,7 @@ public class RecyclingCan extends Subsystem {
 	public static Talon rcMotor;
 	
 	//Solenoids
-	public static Solenoid rcClaw, rcBrake;
+	public static Solenoid rcClaw;
 	
 	public RecyclingCan() {
 		//Limit Switches
@@ -38,11 +38,9 @@ public class RecyclingCan extends Subsystem {
 		
 		//Solenoids
     	rcClaw = new Solenoid(RobotMap.rcClaw);
-    	rcBrake = new Solenoid(RobotMap.rcBrake);	
 	}
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
     	setDefaultCommand(new moveRecyclingElevator());
     }
     //Limit Switches
@@ -60,12 +58,6 @@ public class RecyclingCan extends Subsystem {
     
     //Talons
     public void move(double y) {
-//    	if(y>=0) {
-//    		brakeOn();
-//    	}
-//    	else {
-//    		brakeOff();
-//    	}
     	rcMotor.set(y);
     }
     
@@ -75,12 +67,6 @@ public class RecyclingCan extends Subsystem {
     }
     public void closeClaw() {
     	rcClaw.set(false);
-    }
-    public void brakeOn() {
-    	rcBrake.set(true);
-    }
-    public void brakeOff() {
-    	rcBrake.set(false);
     }
 }
 

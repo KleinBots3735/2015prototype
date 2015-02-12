@@ -41,7 +41,6 @@ public class accDrive extends Command {
     	}
     	else {
     		Robot.drivetrain.move(y, z);
-    		System.out.println("trrueeee");
     	}
     }
 

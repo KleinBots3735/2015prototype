@@ -72,7 +72,6 @@ public class ToteElevator extends Subsystem {
     	else {
     		brakeOn();
     	}
-    	System.out.println(y);
     	toteMotor.set(y);
     }
 

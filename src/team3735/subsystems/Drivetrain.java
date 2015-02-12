@@ -20,7 +20,8 @@ public class Drivetrain extends Subsystem {
 	public Drivetrain() {
 		leftDriveEncoder = new Encoder(RobotMap.driveLeftEncoderA,RobotMap.driveLeftEncoderB);
 		rightDriveEncoder = new Encoder(RobotMap.driveRightEncoderA,RobotMap.driveRightEncoderB);
-		drive = new RobotDrive(RobotMap.frontLeftMotor,RobotMap.rearLeftMotor,RobotMap.frontRightMotor,RobotMap.rearRightMotor);
+		//drive = new RobotDrive(RobotMap.frontLeftMotor,RobotMap.rearLeftMotor,RobotMap.frontRightMotor,RobotMap.rearRightMotor);
+		drive = new RobotDrive(RobotMap.leftDrive,RobotMap.rightDrive);
 		realSpeed = false;
 	}
     public void initDefaultCommand() {
@@ -33,13 +34,27 @@ public class Drivetrain extends Subsystem {
     	return leftDriveEncoder.get();
     }
     public double getRightEncoder() {
-    	return rightDriveEncoder.get();
+    	return -rightDriveEncoder.get();
     }
     
     public void move(double x, double y) {
     	double moveValue = x;
     	double rotateValue = y;
+    	double l = getLeftEncoder();
+    	double r = getRightEncoder();
+    	
+    	System.out.println(x + " " + y);
+    	if(Math.abs(moveValue) > 0 && Math.abs(rotateValue) < 0.1){
+    		System.out.println("First");
+	    	if(l - r > 5)
+		    		rotateValue-=.5;
+	    	else if(r - l > 5)
+	    			rotateValue+=.5;
+    	}
     	drive.arcadeDrive(moveValue, rotateValue);
+    	
+    	System.out.println("Left: " + getLeftEncoder());
+    	System.out.println("Right: " + getRightEncoder());
     }
     
     
