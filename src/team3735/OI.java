@@ -1,14 +1,20 @@
 package team3735;
 
 import team3735.commands.accSpeed;
-import team3735.commands.breakOff;
-import team3735.commands.breakOn;
+import team3735.commands.brakeOff;
+import team3735.commands.brakeOn;
 import team3735.commands.closeClaw;
 import team3735.commands.closeIntake;
-import team3735.commands.intakeNoLimit;
+import team3735.commands.intake;
+import team3735.commands.intakeAuto;
 import team3735.commands.openClaw;
 import team3735.commands.openIntake;
+import team3735.commands.rceDown;
+import team3735.commands.rceUp;
 import team3735.commands.releaseTote;
+import team3735.commands.teDown;
+import team3735.commands.teUp;
+import team3735.commands.teUpWithBrake;
 import team3735.commands.toggleIntake;
 import team3735.commands.trueSpeed;
 import edu.wpi.first.wpilibj.Joystick;
@@ -70,19 +76,26 @@ public class OI {
 	public Button coDriverButtonRT = new JoystickButton(coDriverStick, 8);
 	
 	public OI() {
-		driverButtonRB.whileHeld(new intakeNoLimit());
+		driverButtonRB.whileHeld(new intake());
 		driverButtonRT.whileHeld(new releaseTote());
 		driverButtonLB.whenPressed(new toggleIntake());
 		driverButtonLT.whenPressed(new closeIntake());
-		driverButtonLT.whileHeld(new intakeNoLimit());
+		driverButtonLT.whileHeld(new intakeAuto());
 		driverButtonLT.whenReleased(new openIntake());
-		//coDriverButtonB.whenPressed(new moveToteElevator());
 		driverButtonStart.whenPressed(new trueSpeed());
 		driverButtonBack.whenPressed(new accSpeed());
-		driverButtonA.whenPressed(new breakOff());
-		driverButtonB.whenPressed(new breakOn());
+		driverButtonA.whenPressed(new brakeOff());
+		driverButtonB.whenPressed(new brakeOn());
+		
+		coDriverButtonX.whenPressed(new brakeOff());
+		coDriverButtonX.whileHeld(new teDown());
+		coDriverButtonX.whenReleased(new teUpWithBrake());
+		coDriverButtonA.whileHeld(new teUp());
 		coDriverButtonLT.whenPressed(new closeClaw());
 		coDriverButtonRT.whenPressed(new openClaw());
+		coDriverButtonLB.whileHeld(new rceUp());
+		coDriverButtonRB.whileHeld(new rceDown());
+		
 	}
 }
 

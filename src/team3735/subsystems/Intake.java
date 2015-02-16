@@ -33,23 +33,28 @@ public class Intake extends Subsystem {
 	
 	//Limit Switch
     public boolean getToteStatus() {
-    	return !toteStatus.get();
+    	return toteStatus.get();
     }
     
     //Talon
-    public void motorIntake() {
+    public void motorIntake() { //spins tote in, stops when tote is ready
     	//intakeMotorLeft.set(1);
     	//intakeMotorRight.set(-1);
-    	intakeMotorLeft.set(0.75);
-    	intakeMotorRight.set(-0.75);
+    	if(!getToteStatus()){
+    		intakeMotorLeft.set(0.75);
+    		intakeMotorRight.set(-0.75);
+    	}
+    	else if(getToteStatus()){
+    		stopIntake();
+    	}
     }    
-    public void motorRelease() {
+    public void motorRelease() { //releases tote
     	//intakeMotorLeft.set(-1);
     	//intakeMotorRight.set(1);
     	intakeMotorLeft.set(-0.75);
     	intakeMotorRight.set(0.75);
     }
-    public void stopIntake() {
+    public void stopIntake() { //stops intake motor
     	intakeMotorLeft.set(0);
     	intakeMotorRight.set(0);
     }

@@ -1,17 +1,16 @@
 package team3735.commands;
 
-	
 import team3735.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class intake extends Command {
+public class rceDown extends Command {
 
-    public intake() {
+    public rceDown() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.intake);
+    	requires(Robot.rcElevator);
     }
 
     // Called just before this Command runs the first time
@@ -20,22 +19,22 @@ public class intake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.motorIntake();
+    	Robot.rcElevator.moveDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.intake.getToteStatus();
+        return false;
     }
-    
+
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.stopIntake();
+    	Robot.rcElevator.move(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.intake.stopIntake();
+    	Robot.rcElevator.move(0);
     }
 }

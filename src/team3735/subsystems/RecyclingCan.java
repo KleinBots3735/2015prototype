@@ -1,7 +1,6 @@
 package team3735.subsystems;
 
 import team3735.RobotMap;
-import team3735.commands.moveRecyclingElevator;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -30,9 +29,6 @@ public class RecyclingCan extends Subsystem {
 		rcTopLimit = new DigitalInput(RobotMap.rcTopLimit);
 		rcBottomLimit = new DigitalInput(RobotMap.rcBottomLimit);
 		
-		//Encoder
-    	rcEncoder = new Encoder(RobotMap.rcEncoderA,RobotMap.rcEncoderB);
-
 		//Talons
 		rcMotor = new Talon(RobotMap.rcMotor);
 		
@@ -41,7 +37,6 @@ public class RecyclingCan extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new moveRecyclingElevator());
     }
     //Limit Switches
     public boolean getTopLimit() {
@@ -59,6 +54,13 @@ public class RecyclingCan extends Subsystem {
     //Talons
     public void move(double y) {
     	rcMotor.set(y);
+    }
+    
+    public void moveUp(){
+    	rcMotor.set(1);
+    }
+    public void moveDown(){
+    	rcMotor.set(-1);
     }
     
     //Solenoids

@@ -2,12 +2,13 @@ package team3735;
 
 import team3735.commands.driveWithJoy;
 import team3735.commands.intake;
-import team3735.commands.moveRecyclingElevator;
-import team3735.commands.moveToteElevator;
+import team3735.commands.rceUp;
 import team3735.subsystems.Drivetrain;
 import team3735.subsystems.Intake;
 import team3735.subsystems.RecyclingCan;
 import team3735.subsystems.ToteElevator;
+import team3735.subsystems.Vision;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -28,6 +29,10 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Drivetrain drivetrain;
 	public static RecyclingCan rcElevator;
+	public static Vision vision;
+	
+	public static I2C arduino;
+	
 	public static boolean trueSpeed;
 
 	public static boolean isTrueSpeed() {
@@ -37,9 +42,8 @@ public class Robot extends IterativeRobot {
 	public static void setTrueSpeed(boolean trueSpeed) {
 		Robot.trueSpeed = trueSpeed;
 	}
-
+	
 	Command autonomousCommand;
-
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -49,8 +53,11 @@ public class Robot extends IterativeRobot {
 		drivetrain = new Drivetrain();
 		rcElevator = new RecyclingCan();
 		intake = new Intake();
+		vision = new Vision();
 		oi = new OI();
 		trueSpeed = false;
+		
+		arduino = new I2C(I2C.Port.kOnboard,0);
 		
 		SmartDashboard.putData(drivetrain);
 		SmartDashboard.putData(toteElevator);
@@ -58,9 +65,7 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putData("DriveWithJoy", new driveWithJoy());
 		SmartDashboard.putData("Intake", new intake());
-		SmartDashboard.putData("Move Recycling Elevator", new moveRecyclingElevator());
-		SmartDashboard.putData("Move Tote Elevator", new moveToteElevator());
-		
+		SmartDashboard.putData("Move Recycling Elevator", new rceUp());
     }
 	
 	public void disabledPeriodic() {
@@ -70,6 +75,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+        arduino.write(2, 1);
     }
 
     /**
@@ -85,6 +91,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        arduino.write(2, 2);
     }
 
     /**
@@ -92,7 +99,6 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-
     }
 
     /**
@@ -101,7 +107,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("Encoder", Robot.toteElevator.getEncoderRate());
-
+        System.out.println(Robot.toteElevator.getEncoderCount());
     }
     
     /**

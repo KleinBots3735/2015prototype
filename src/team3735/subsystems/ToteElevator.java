@@ -1,7 +1,6 @@
 package team3735.subsystems;
 
 import team3735.RobotMap;
-import team3735.commands.moveToteElevator;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -27,6 +26,8 @@ public class ToteElevator extends Subsystem {
 	public static Solenoid toteBrake;	
 	
 	public static double moveValue;
+	
+	public static int level;
 
 	public ToteElevator() {
 		//Limit Switches 
@@ -45,14 +46,13 @@ public class ToteElevator extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new moveToteElevator());
     }
     //Limit Switches
     public boolean getTopLimit() {
     	return !toteTopLimit.get();
     }
     public boolean getBottomLimit() {
-    	return toteBottomLimit.get();
+    	return !toteBottomLimit.get();
     }
 
     
@@ -63,16 +63,34 @@ public class ToteElevator extends Subsystem {
     public double getEncoderRate() {
     	return toteEncoder.getDistance() + toteEncoder.getEncodingScale() + toteEncoder.getRaw();
     }
+	public void resetEncoder() {
+		toteEncoder.reset();
+	}
+
     
     //Talons
     public void move(double y) {
-    	if(y < 0) {
-    		brakeOff();
+    	toteMotor.set(y);
+    }
+    
+    public void moveUp(){
+    	brakeOn();
+    	if(getTopLimit()){
+    		move(0);
     	}
     	else {
-    		brakeOn();
+    		move(-1);
     	}
-    	toteMotor.set(y);
+    }
+    
+    public void moveDown(){
+    	brakeOff();
+    	if(getBottomLimit()){
+    		move(0);
+    	}
+    	else {
+    		move(1);
+    	}
     }
 
     //Solenoids
@@ -82,5 +100,14 @@ public class ToteElevator extends Subsystem {
     public void brakeOff() {
     	toteBrake.set(true);
     }
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		ToteElevator.level = level;
+	}  
+    
 }
 

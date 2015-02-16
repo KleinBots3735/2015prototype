@@ -6,17 +6,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class breakOff extends Command {
+public class brakeOn extends Command {
 
-    public breakOff() {
+    public brakeOn() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.toteElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.toteElevator.brakeOff();
+    	Robot.toteElevator.brakeOn();
     }
 
     // Called repeatedly when this Command is scheduled to run

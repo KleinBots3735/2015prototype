@@ -1,6 +1,7 @@
 package team3735;
 
 
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -24,14 +25,14 @@ public class RobotMap {
 		public static int rcTopLimit = 3;
 		public static int rcBottomLimit = 4;
 		//Encoders
-		public static int toteEncoderA = 9;
-		public static int toteEncoderB = 10;
+		public static int toteEncoderA = 5;
+		public static int toteEncoderB = 6;
 		public static int driveRightEncoderA = 7;
 		public static int driveRightEncoderB = 8;
-		public static int driveLeftEncoderA = 5;
-		public static int driveLeftEncoderB = 6;
-		public static int rcEncoderA = 11;
-		public static int rcEncoderB = 12;
+		public static int driveLeftEncoderA = 9;
+		public static int driveLeftEncoderB = 10;
+//		public static int rcEncoderA = 11;
+//		public static int rcEncoderB = 12;
 	
 	//Motor Controllers
 //	public static int frontLeftMotor = 0;
@@ -44,6 +45,10 @@ public class RobotMap {
 	public static int intakeMotorRight = 5;
 	public static int toteMotor = 6;
 	public static int rcMotor = 7;
+	
+	public static int servoX = 8;
+	public static int servoY = 9;
+	
 		
 	//Solenoids
 	public static int intakeSolenoid = 0;
@@ -52,5 +57,8 @@ public class RobotMap {
 	
 	//Pneumatic Air Compressor
 	public static int compressor = 0;
+	
+	//I2C
+	public static int arduino = 2;
 	
 }

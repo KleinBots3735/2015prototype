@@ -1,48 +1,37 @@
 package team3735.commands;
 
 import team3735.Robot;
-import team3735.subsystems.ToteElevator;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class moveToteElevator extends Command {
+public class teUpWithBrake extends Command {
 
-    public moveToteElevator() {
+    public teUpWithBrake() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.toteElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	ToteElevator.toteEncoder.reset();
+    	Robot.toteElevator.brakeOn();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double Y = Robot.oi.coDriverStick.getY();
-    	Robot.toteElevator.move(-Y);
-//    	if(!Robot.toteElevator.getBottomLimit() && (Y > 0)) {
-//    		Robot.toteElevator.move(Y);
-//    	}
-//    	else if(!Robot.toteElevator.getTopLimit() && (Y < 0)) {
-//    		Robot.toteElevator.move(Y);
-//    	}
-//    	
-    	//System.out.println("Encoder: " + ToteElevator.toteEncoder.get());
+    	Robot.toteElevator.moveUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//    	if(ToteElevator.moveValue>0) {
-//    		return Robot.toteElevator.getTopLimit();
-//    	}
-//    	else if(ToteElevator.moveValue<0) {
-//        	return Robot.toteElevator.getBottomLimit();
-//    	}
-//    	else return false;
-    	return false;
+    	try {
+			wait(50);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -53,5 +42,6 @@ public class moveToteElevator extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
