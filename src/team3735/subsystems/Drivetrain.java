@@ -42,18 +42,6 @@ public class Drivetrain extends Subsystem {
     public void move(double x, double y) {
     	double moveValue = x;
     	double rotateValue = y;
-//    	double l = getLeftCount();
-//    	double r = getRightCount();
-//    	double l = getLeftSpeed();
-//    	double r = getRightSpeed();
-//    	
-//    	System.out.println(x + " " + y);
-//    	if(Math.abs(moveValue) > 0 && Math.abs(rotateValue) < 0.1) {
-//	    	if(l - r > 5)
-//		    		rotateValue-=.1;
-//	    	else if(r - l > 5)
-//	    			rotateValue+=.1;
-//    	}
     	drive.arcadeDrive(moveValue, rotateValue);
     	
 //    	System.out.println("Left: " + l);
